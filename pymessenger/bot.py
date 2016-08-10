@@ -32,6 +32,15 @@ class Bot(FacebookGraphApi):
         }
         return self._send_payload(payload)
 
+    def send_message_tmp(self, recipient_id, message):
+        payload = {
+            'recipient': {
+                'id': recipient_id
+            },
+            'message': message
+        }
+        return self._send_payload(payload)
+
     def send_generic_message(self, recipient_id, elements):
         payload = {
             'recipient': {
@@ -63,6 +72,18 @@ class Bot(FacebookGraphApi):
                         "buttons": buttons
                     }
                 }
+            }
+        }
+        return self._send_payload(payload)
+
+    def send_quick_replies(self, recipient_id, text, replies):
+        payload = {
+            'recipient': {
+                'id': recipient_id
+            },
+            'message': {
+                        "text": text,
+                        "quick_replies": replies
             }
         }
         return self._send_payload(payload)
